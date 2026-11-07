@@ -1,0 +1,56 @@
+{% set editing = editing|default({}) %}
+{% set is_preview = is_preview|default(false) %}
+
+<section>
+<div class="hero-surface isolate relative px-6 py-24 md:py-32 overflow-hidden">
+    <div
+        class="hero-orb -top-32 -right-32 absolute opacity-40 blur-3xl rounded-full size-96"
+        aria-hidden="true"
+    ></div>
+
+    <div class="relative mx-auto max-w-5xl">
+        {% if hero.eyebrow or is_preview %}
+            <div {{ editing.eyebrow|default('')|raw }} class="hero-eyebrow mb-5 font-bold text-sm uppercase tracking-widest">{{ hero.eyebrow|e }}</div>
+        {% endif %}
+
+        {% if hero.heading or is_preview %}
+            <h1 {{ editing.heading|default('')|raw }} class="hero-heading max-w-4xl font-bold text-5xl md:text-7xl tracking-tight">{{ hero.heading|e }}</h1>
+        {% endif %}
+
+        {% if hero.body or is_preview %}
+            <div {{ editing.body|default('')|raw }} class="hero-body mt-8 max-w-2xl text-xl leading-8 whitespace-pre-line">{{ hero.body|e }}</div>
+        {% endif %}
+
+        {% if hero.link.url and hero.link.label %}
+            {% if is_preview %}
+                <button
+                    type="button"
+                    {{ editing.link|default('')|raw }}
+                    class="hero-action inline-flex mt-10 px-6 py-3 border-0 rounded-full font-bold"
+                >
+                    {{ hero.link.label|e }}
+                </button>
+            {% else %}
+                <a
+                    class="hero-action inline-flex mt-10 px-6 py-3 rounded-full font-bold transition hover:-translate-y-0.5"
+                    href="{{ function('esc_url', hero.link.url) }}"
+                    {% if hero.link.target %}
+                    target="{{ hero.link.target|e('html_attr') }}"
+                    rel="noopener noreferrer"
+                    {% endif %}
+                >
+                    {{ hero.link.label|e }}
+                </a>
+            {% endif %}
+        {% elseif is_preview %}
+            <button
+                type="button"
+                {{ editing.link|default('')|raw }}
+                class="hero-action inline-flex mt-10 px-6 py-3 border-0 rounded-full font-bold"
+            >
+                Add link
+            </button>
+        {% endif %}
+    </div>
+</div>
+</section>

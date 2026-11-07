@@ -1,0 +1,8 @@
+{% if section.heading or section.body %}
+    <section class="bg-canvas px-6 py-16 text-ink">
+        <div class="mx-auto max-w-5xl">
+            {% if section.heading %}<h2 class="text-3xl font-bold">{{ section.heading|e }}</h2>{% endif %}
+            {% if section.body %}<p class="mt-4 max-w-3xl text-lg whitespace-pre-line">{{ section.body|e }}</p>{% endif %}
+        </div>
+    </section>
+{% endif %}

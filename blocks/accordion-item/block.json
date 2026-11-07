@@ -1,0 +1,21 @@
+{
+  "$schema": "https://raw.githubusercontent.com/AdvancedCustomFields/schemas/main/json/block.json",
+  "apiVersion": 3,
+  "name": "acf/accordion-item",
+  "version": "1.0.0",
+  "title": "Accordion Item",
+  "description": "One expandable accordion item.",
+  "category": "design",
+  "icon": "excerpt-view",
+  "parent": ["acf/accordion"],
+  "acf": {
+    "blockVersion": 3,
+    "renderTemplate": "render.php",
+    "renderPreview": true,
+    "autoInlineEditing": false
+  },
+  "supports": {
+    "anchor": true,
+    "reusable": false
+  }
+}

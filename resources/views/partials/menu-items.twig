@@ -1,0 +1,12 @@
+{% macro render(items) %}
+    <ul class="flex flex-col gap-4 md:flex-row md:flex-wrap md:items-center">
+        {% for item in items %}
+            <li>
+                <a href="{{ function('esc_url', item.link) }}"{% if item.current %} aria-current="page"{% endif %}{% if item.target %} target="{{ item.target|e('html_attr') }}" rel="noopener noreferrer"{% endif %}>{{ item.title|e }}</a>
+                {% if item.children %}
+                    <div class="pl-4 pt-2">{{ _self.render(item.children) }}</div>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endmacro %}

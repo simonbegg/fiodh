@@ -1,0 +1,15 @@
+{
+  "key": "group_block_hero",
+  "title": "Hero",
+  "fields": [
+    { "key": "field_block_hero_eyebrow", "label": "Eyebrow", "name": "eyebrow", "type": "text" },
+    { "key": "field_block_hero_heading", "label": "Heading", "name": "heading", "type": "text", "required": 1 },
+    { "key": "field_block_hero_body", "label": "Body", "name": "body", "type": "textarea", "rows": 4, "new_lines": "" },
+    { "key": "field_block_hero_link", "label": "Link", "name": "link", "type": "link", "return_format": "array" }
+  ],
+  "location": [[{ "param": "block", "operator": "==", "value": "acf/hero" }]],
+  "position": "normal",
+  "style": "default",
+  "active": true,
+  "modified": 1793960000
+}

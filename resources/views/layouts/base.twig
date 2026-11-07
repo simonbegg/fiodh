@@ -1,0 +1,22 @@
+<!doctype html>
+<html {{ function('language_attributes') }}>
+    <head>
+        <meta charset="{{ site.charset }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {{ function('wp_head') }}
+    </head>
+
+    <body class="{{ body_class }}">
+        {{ function('wp_body_open') }}
+
+        <a class="sr-only focus:not-sr-only" href="#main-content">{{ function('__', 'Skip to content', 'timber-prototype')|e }}</a>
+        {% include 'partials/header.twig' %}
+
+        <main id="main-content">
+            {% block content %}{% endblock %}
+        </main>
+
+        {% include 'partials/footer.twig' %}
+        {{ function('wp_footer') }}
+    </body>
+</html>

@@ -1,0 +1,12 @@
+<footer class="bg-ink px-6 py-12 text-white">
+    <div class="mx-auto max-w-7xl">
+        <a class="font-bold text-xl" href="{{ function('esc_url', site.url) }}">{{ site.name|e }}</a>
+        {% if footer_menu %}
+            <nav class="mt-6" aria-label="{{ function('__', 'Footer navigation', 'timber-prototype')|e('html_attr') }}">
+                {% import 'partials/menu-items.twig' as menu %}
+                {{ menu.render(footer_menu.items) }}
+            </nav>
+        {% endif %}
+        <p class="mt-8 text-sm">&copy; {{ current_year }} {{ site.name|e }}</p>
+    </div>
+</footer>

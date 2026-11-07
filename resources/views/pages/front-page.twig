@@ -1,0 +1,19 @@
+{% extends 'layouts/base.twig' %}
+
+{% block content %}
+    {% if post and function('get_option', 'show_on_front') == 'page' %}
+        {% set hero_link = post.meta('home_hero_link') %}
+        {% set hero = {
+            eyebrow: post.meta('home_hero_eyebrow'),
+            heading: post.meta('home_hero_heading'),
+            body: post.meta('home_hero_body'),
+            link: { url: hero_link.url|default(''), label: hero_link.title|default(''), target: hero_link.target|default('') }
+        } %}
+        {% if hero.heading %}{% include 'components/hero.twig' with { hero: hero } only %}{% endif %}
+        {% include 'partials/home-intro.twig' with { section: {
+            heading: post.meta('home_section_heading'),
+            body: post.meta('home_section_body')
+        } } only %}
+        <article class="is-layout-constrained">{{ post.content|raw }}</article>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,24 @@
+{% set editing = editing|default({}) %}
+{% set is_preview = is_preview|default(false) %}
+
+{% if item.question or is_preview %}
+    <details
+        class="accordion-item group border-b"
+        {% if is_preview %}open{% endif %}
+    >
+        <summary class="flex justify-between items-center gap-6 py-6 cursor-pointer list-none">
+            <span {{ editing.question|default('')|raw }} class="font-bold text-xl">{{ item.question|e }}</span>
+
+            <span
+                class="accordion-item__icon flex justify-center items-center rounded-full size-8 text-xl group-open:rotate-45 transition shrink-0"
+                aria-hidden="true"
+            >
+                +
+            </span>
+        </summary>
+
+        {% if item.answer or is_preview %}
+            <div {{ editing.answer|default('')|raw }} class="accordion-item__answer pr-12 pb-6 max-w-2xl text-lg leading-8 whitespace-pre-line">{{ item.answer|e }}</div>
+        {% endif %}
+    </details>
+{% endif %}

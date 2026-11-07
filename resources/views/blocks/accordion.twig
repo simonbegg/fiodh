@@ -1,0 +1,15 @@
+{% if not is_preview %}
+    <section {{ wrapper_attributes|raw }}>
+{% else %}
+    <section class="acf-accordion">
+{% endif %}
+
+    <div class="accordion-surface px-6 py-20">
+        <div class="mx-auto max-w-3xl">
+            <InnerBlocks
+                allowedBlocks="{{ inner_blocks.allowed|e('html_attr') }}"
+                template="{{ inner_blocks.template|e('html_attr') }}"
+            />
+        </div>
+    </div>
+</section>

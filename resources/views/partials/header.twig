@@ -1,0 +1,16 @@
+<header class="bg-white text-ink" x-data="{ open: false }" @keydown.escape.window="open = false">
+    <div class="mx-auto max-w-7xl px-6 py-5 md:flex md:items-center md:justify-between">
+        <div class="flex items-center justify-between gap-6">
+            <a class="font-bold text-xl" href="{{ function('esc_url', site.url) }}">{{ site.name|e }}</a>
+            {% if primary_menu %}
+                <button type="button" class="border border-current rounded px-3 py-2 md:hidden" @click="open = !open" :aria-expanded="open.toString()" aria-expanded="false" aria-controls="primary-navigation">{{ function('__', 'Menu', 'timber-prototype')|e }}</button>
+            {% endif %}
+        </div>
+        {% if primary_menu %}
+            <nav id="primary-navigation" aria-label="{{ function('__', 'Primary navigation', 'timber-prototype')|e('html_attr') }}" :class="open ? '' : 'max-md:hidden'" class="mt-5 md:mt-0">
+                {% import 'partials/menu-items.twig' as menu %}
+                {{ menu.render(primary_menu.items) }}
+            </nav>
+        {% endif %}
+    </div>
+</header>

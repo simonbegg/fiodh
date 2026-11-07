@@ -1,0 +1,24 @@
+{
+  "$schema": "https://raw.githubusercontent.com/AdvancedCustomFields/schemas/main/json/block.json",
+  "apiVersion": 3,
+  "name": "acf/hero",
+  "version": "1.0.0",
+  "title": "Hero",
+  "description": "A prominent introductory section with an optional link.",
+  "category": "design",
+  "icon": "cover-image",
+  "keywords": ["hero", "banner", "intro"],
+  "acf": {
+    "blockVersion": 3,
+    "renderTemplate": "render.php",
+    "renderPreview": true,
+    "autoInlineEditing": false
+  },
+  "supports": {
+    "anchor": true,
+    "align": ["wide", "full"],
+    "typography": {
+      "__experimentalFontFamily": true
+    }
+  }
+}

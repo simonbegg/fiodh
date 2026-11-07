@@ -1,0 +1,13 @@
+{% if not is_preview %}
+    <div {{ wrapper_attributes|raw }}>
+{% endif %}
+
+    {% include 'components/hero.twig' with {
+    hero: hero,
+    editing: editing|default({}),
+    is_preview: is_preview|default(false)
+} only %}
+
+    {% if not is_preview %}
+    </div>
+{% endif %}

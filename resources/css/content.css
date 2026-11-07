@@ -1,0 +1,252 @@
+@import "tailwindcss";
+
+@source "../views";
+
+@theme inline {
+  --color-ink: var(--wp--preset--color--ink);
+  --color-canvas: var(--wp--preset--color--canvas);
+  --color-brand: var(--wp--preset--color--brand);
+  --color-accent: var(--wp--preset--color--accent);
+  --font-sans: var(--wp--preset--font-family--sans);
+  --font-serif: var(--wp--preset--font-family--serif);
+  --radius-card: var(--wp--custom--radius--large);
+  --shadow-soft: var(--wp--preset--shadow--soft);
+}
+
+/*
+ * Core blocks need explicit shared rules because Tailwind's preflight resets
+ * native heading and button styles. Keep these rules outside a cascade layer
+ * so they consistently follow WordPress's block-library CSS in both contexts.
+ */
+.wp-block-heading {
+  color: var(--wp--preset--color--ink);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+h1.wp-block-heading {
+  font-size: clamp(
+    2.5rem,
+    6vw,
+    var(--wp--preset--font-size--display)
+  );
+}
+
+h2.wp-block-heading {
+  font-size: clamp(
+    2rem,
+    4vw,
+    var(--wp--preset--font-size--xx-large)
+  );
+}
+
+h3.wp-block-heading {
+  font-size: var(--wp--preset--font-size--x-large);
+}
+
+h4.wp-block-heading {
+  font-size: var(--wp--preset--font-size--large);
+}
+
+h5.wp-block-heading {
+  font-size: var(--wp--preset--font-size--medium);
+}
+
+h6.wp-block-heading {
+  font-size: var(--wp--preset--font-size--small);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.wp-block-paragraph {
+  color: var(--wp--preset--color--ink);
+  font-size: var(--wp--preset--font-size--medium);
+  line-height: 1.75;
+}
+
+.wp-block-button .wp-block-button__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--wp--preset--color--brand);
+  color: var(--wp--preset--color--white);
+  padding: var(--wp--preset--spacing--30) var(--wp--preset--spacing--50);
+  border: 0;
+  border-radius: 999px;
+  font-weight: 700;
+  line-height: 1.5;
+  text-decoration: none;
+  transition: filter 150ms ease, transform 150ms ease;
+}
+
+.wp-block-button .wp-block-button__link:hover {
+  filter: brightness(0.9);
+  transform: translateY(-1px);
+}
+
+.wp-block-button .wp-block-button__link:focus-visible {
+  outline: 3px solid var(--wp--preset--color--accent);
+  outline-offset: 3px;
+}
+
+.wp-block-image {
+  margin: 0;
+}
+
+.wp-block-image img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+.wp-block-columns {
+  gap: var(--wp--preset--spacing--50);
+}
+
+/*
+ * Shared surface styles. The same variables are consumed by native blocks and
+ * custom Twig components, so changing a token or variation updates both.
+ */
+:where(.is-style-surface-canvas) {
+  --surface-background: var(--wp--preset--color--canvas);
+  --surface-text: var(--wp--preset--color--ink);
+  --surface-action: var(--wp--preset--color--brand);
+  --surface-action-text: var(--wp--preset--color--white);
+  --surface-accent: var(--wp--preset--color--brand);
+  background-color: var(--surface-background);
+  color: var(--surface-text);
+}
+
+:where(.is-style-surface-ink) {
+  --surface-background: var(--wp--preset--color--ink);
+  --surface-text: var(--wp--preset--color--white);
+  --surface-action: var(--wp--preset--color--accent);
+  --surface-action-text: var(--wp--preset--color--ink);
+  --surface-accent: var(--wp--preset--color--accent);
+  background-color: var(--surface-background);
+  color: var(--surface-text);
+}
+
+:where(.is-style-surface-brand) {
+  --surface-background: var(--wp--preset--color--brand);
+  --surface-text: var(--wp--preset--color--white);
+  --surface-action: var(--wp--preset--color--accent);
+  --surface-action-text: var(--wp--preset--color--ink);
+  --surface-accent: var(--wp--preset--color--accent);
+  background-color: var(--surface-background);
+  color: var(--surface-text);
+}
+
+:where(.is-style-surface-accent) {
+  --surface-background: var(--wp--preset--color--accent);
+  --surface-text: var(--wp--preset--color--ink);
+  --surface-action: var(--wp--preset--color--ink);
+  --surface-action-text: var(--wp--preset--color--white);
+  --surface-accent: var(--wp--preset--color--brand);
+  background-color: var(--surface-background);
+  color: var(--surface-text);
+}
+
+:is(.wp-block-group, .wp-block-columns)[class*="is-style-surface-"] {
+  padding: var(--wp--preset--spacing--60);
+  border-radius: var(--wp--custom--radius--large);
+}
+
+[class*="is-style-surface-"] :is(.wp-block-heading, .wp-block-paragraph) {
+  color: var(--surface-text);
+}
+
+[class*="is-style-surface-"] a:not(.wp-block-button__link) {
+  color: currentColor;
+  text-decoration-color: var(--surface-accent);
+  text-decoration-thickness: 0.125em;
+  text-underline-offset: 0.2em;
+}
+
+[class*="is-style-surface-"]
+  .wp-block-button:not(.is-style-design-outline):not(.is-style-design-accent)
+  .wp-block-button__link {
+  background-color: var(--surface-action);
+  color: var(--surface-action-text);
+}
+
+/* Reusable component primitives. */
+.hero-surface {
+  background-color: var(
+    --surface-background,
+    var(--wp--preset--color--ink)
+  );
+  color: var(--surface-text, var(--wp--preset--color--white));
+}
+
+.hero-surface .hero-heading {
+  color: var(--surface-text, var(--wp--preset--color--white));
+}
+
+.hero-eyebrow {
+  color: var(--surface-accent, var(--wp--preset--color--accent));
+}
+
+.hero-body {
+  color: color-mix(in srgb, currentColor 80%, transparent);
+}
+
+.hero-action {
+  background-color: var(--surface-action, var(--wp--preset--color--accent));
+  color: var(--surface-action-text, var(--wp--preset--color--ink));
+}
+
+.hero-orb {
+  background-color: var(--surface-accent, var(--wp--preset--color--brand));
+}
+
+.accordion-surface {
+  background-color: var(
+    --surface-background,
+    var(--wp--preset--color--canvas)
+  );
+  color: var(--surface-text, var(--wp--preset--color--ink));
+}
+
+.accordion-item {
+  border-color: color-mix(in srgb, currentColor 20%, transparent);
+}
+
+.accordion-item__answer {
+  color: color-mix(in srgb, currentColor 75%, transparent);
+}
+
+.accordion-item__icon {
+  background-color: var(--surface-action, var(--wp--preset--color--brand));
+  color: var(--surface-action-text, var(--wp--preset--color--white));
+}
+
+/* Additional native-block styles exposed in the editor Styles panel. */
+.wp-block-button.is-style-design-outline .wp-block-button__link {
+  background-color: transparent;
+  color: var(--surface-text, var(--wp--preset--color--ink));
+  border: 2px solid currentColor;
+}
+
+.wp-block-button.is-style-design-accent .wp-block-button__link {
+  background-color: var(--wp--preset--color--accent);
+  color: var(--wp--preset--color--ink);
+}
+
+.wp-block-image.is-style-design-rounded img {
+  border-radius: var(--wp--custom--radius--large);
+}
+
+.wp-block-image.is-style-design-frame {
+  padding: var(--wp--preset--spacing--30);
+  background-color: var(--wp--preset--color--white);
+  box-shadow: var(--wp--preset--shadow--soft);
+}
+
+.wp-block-image.is-style-design-frame,
+.wp-block-image.is-style-design-frame img {
+  border-radius: var(--wp--custom--radius--medium);
+}

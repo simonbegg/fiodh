@@ -1,0 +1,13 @@
+{% if not is_preview %}
+    <div {{ wrapper_attributes|raw }}>
+{% endif %}
+
+    {% include 'components/accordion-item.twig' with {
+    item: item,
+    editing: editing,
+    is_preview: is_preview
+} only %}
+
+    {% if not is_preview %}
+    </div>
+{% endif %}

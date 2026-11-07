@@ -1,0 +1,13 @@
+{
+  "key": "group_block_accordion_item",
+  "title": "Accordion Item",
+  "fields": [
+    { "key": "field_block_accordion_item_question", "label": "Question", "name": "question", "type": "text", "required": 1 },
+    { "key": "field_block_accordion_item_answer", "label": "Answer", "name": "answer", "type": "textarea", "rows": 5, "new_lines": "", "required": 1 }
+  ],
+  "location": [[{ "param": "block", "operator": "==", "value": "acf/accordion-item" }]],
+  "position": "normal",
+  "style": "default",
+  "active": true,
+  "modified": 1793960000
+}

@@ -1,0 +1,30 @@
+{% extends 'layouts/base.twig' %}
+
+{% block content %}
+    <div class="mx-auto max-w-5xl px-6 py-16">
+        {% if is_404 %}
+            <h1>{{ function('__', 'Page not found', 'timber-prototype')|e }}</h1>
+            <p>{{ function('__', 'The page you requested could not be found.', 'timber-prototype')|e }}</p>
+        {% else %}
+            {% if is_search %}
+                <h1>{{ function('__', 'Search results', 'timber-prototype')|e }}: {{ search_query|e }}</h1>
+            {% elseif archive_title %}
+                <h1>{{ archive_title|striptags|e }}</h1>
+            {% endif %}
+            {% for post in posts %}
+                <article class="my-8">
+                    {% if is_singular %}
+                        <h1>{{ post.title|e }}</h1>
+                        <div class="is-layout-constrained">{{ post.content|raw }}</div>
+                    {% else %}
+                        <h2><a href="{{ post.link|e('html_attr') }}">{{ post.title|e }}</a></h2>
+                        <p>{{ post.preview.read_more(false)|striptags|e }}</p>
+                    {% endif %}
+                </article>
+            {% else %}
+                <p>{{ function('__', 'No content found.', 'timber-prototype')|e }}</p>
+            {% endfor %}
+            {% if not is_singular %}{{ function('get_the_posts_pagination')|raw }}{% endif %}
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://raw.githubusercontent.com/AdvancedCustomFields/schemas/main/json/block.json",
+  "apiVersion": 3,
+  "name": "acf/accordion",
+  "version": "1.0.0",
+  "title": "Accordion",
+  "description": "A collection of expandable content items.",
+  "category": "design",
+  "icon": "menu-alt3",
+  "keywords": ["accordion", "faq", "expand"],
+  "allowedBlocks": ["acf/accordion-item"],
+  "acf": {
+    "blockVersion": 3,
+    "renderTemplate": "render.php",
+    "renderPreview": true
+  },
+  "supports": {
+    "anchor": true,
+    "align": ["wide", "full"],
+    "jsx": true,
+    "typography": {
+      "__experimentalFontFamily": true
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "key": "group_starter_homepage",
+  "title": "Homepage sections",
+  "fields": [
+    { "key": "field_starter_home_hero_eyebrow", "label": "Hero eyebrow", "name": "home_hero_eyebrow", "type": "text" },
+    { "key": "field_starter_home_hero_heading", "label": "Hero heading", "name": "home_hero_heading", "type": "text" },
+    { "key": "field_starter_home_hero_body", "label": "Hero body", "name": "home_hero_body", "type": "textarea", "rows": 4, "new_lines": "" },
+    { "key": "field_starter_home_hero_link", "label": "Hero link", "name": "home_hero_link", "type": "link", "return_format": "array" },
+    { "key": "field_starter_home_section_heading", "label": "Intro heading", "name": "home_section_heading", "type": "text" },
+    { "key": "field_starter_home_section_body", "label": "Intro body", "name": "home_section_body", "type": "textarea", "rows": 4, "new_lines": "" }
+  ],
+  "location": [[{ "param": "page_type", "operator": "==", "value": "front_page" }]],
+  "position": "normal",
+  "style": "default",
+  "active": true,
+  "modified": 1793960000
+}
