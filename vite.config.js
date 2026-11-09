@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 import { defineConfig } from "vite";
 import tailwindcss from "@tailwindcss/vite";
 import FullReload from "vite-plugin-full-reload";
+import { optimizeImages } from "./scripts/optimize-images.mjs";
 
 const rootDir = path.dirname(fileURLToPath(import.meta.url));
 const hotFile = path.resolve(rootDir, "dist/hot");
@@ -26,6 +27,36 @@ function wordpressHotFile() {
   };
 }
 
+function watchThemeImages() {
+  const imagesDir = path.resolve(rootDir, "resources/images");
+  let pending = Promise.resolve();
+  let timer;
+  const queueBuild = (server, reload = true) => {
+    pending = pending.catch(() => {}).then(async () => {
+      await optimizeImages();
+      if (reload) server.ws.send({ type: "full-reload" });
+    }).catch((error) => server.config.logger.error(`Image optimization failed: ${error.message}`));
+    return pending;
+  };
+  return {
+    name: "watch-theme-images",
+    apply: "serve",
+    async configureServer(server) {
+      await queueBuild(server, false);
+      server.watcher.add(imagesDir);
+      for (const event of ["add", "change", "unlink"]) {
+        server.watcher.on(event, (file) => {
+          const relative = path.relative(imagesDir, path.resolve(file));
+          if (!relative || relative.startsWith("..") || path.isAbsolute(relative)) return;
+          clearTimeout(timer);
+          timer = setTimeout(() => queueBuild(server), 200);
+        });
+      }
+      server.httpServer?.once("close", () => clearTimeout(timer));
+    },
+  };
+}
+
 export default defineConfig({
   plugins: [
     tailwindcss(),
@@ -41,6 +72,7 @@ export default defineConfig({
     ]),
 
     wordpressHotFile(),
+    watchThemeImages(),
   ],
 
   input: {
