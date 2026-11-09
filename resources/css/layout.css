@@ -1,0 +1,4 @@
+/* Wide section container; keep max-w-7xl aligned with theme.json wideSize. */
+@utility content-wrapper {
+  @apply mx-auto max-w-7xl px-6 lg:px-8 2xl:px-0;
+}
