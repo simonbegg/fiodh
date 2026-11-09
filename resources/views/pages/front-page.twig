@@ -1,6 +1,7 @@
 {% extends 'layouts/base.twig' %}
 
 {% block content %}
+    {% include 'partials/front-page-hero.twig' %}
     {% if post and function('get_option', 'show_on_front') == 'page' %}
         {% set hero_link = post.meta('home_hero_link') %}
         {% set hero = {
