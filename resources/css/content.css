@@ -8,8 +8,11 @@
   --color-canvas: var(--wp--preset--color--canvas);
   --color-brand: var(--wp--preset--color--brand);
   --color-accent: var(--wp--preset--color--accent);
+  /* The sans preset comes from theme.json; use font-sans in Twig and blocks. */
   --font-sans: var(--wp--preset--font-family--sans);
   --font-serif: var(--wp--preset--font-family--serif);
+  --font-basic: var(--wp--preset--font-family--basic);
+  --font-display: var(--wp--preset--font-family--display);
   --radius-card: var(--wp--custom--radius--large);
   --shadow-soft: var(--wp--preset--shadow--soft);
 }
@@ -20,7 +23,6 @@
  * so they consistently follow WordPress's block-library CSS in both contexts.
  */
 .wp-block-heading {
-  color: var(--wp--preset--color--ink);
   font-weight: 700;
   letter-spacing: -0.025em;
   line-height: 1.1;
@@ -28,19 +30,11 @@
 }
 
 h1.wp-block-heading {
-  font-size: clamp(
-    2.5rem,
-    6vw,
-    var(--wp--preset--font-size--display)
-  );
+  font-size: clamp(2.5rem, 6vw, var(--wp--preset--font-size--display));
 }
 
 h2.wp-block-heading {
-  font-size: clamp(
-    2rem,
-    4vw,
-    var(--wp--preset--font-size--xx-large)
-  );
+  font-size: clamp(2rem, 4vw, var(--wp--preset--font-size--xx-large));
 }
 
 h3.wp-block-heading {
@@ -79,7 +73,9 @@ h6.wp-block-heading {
   font-weight: 700;
   line-height: 1.5;
   text-decoration: none;
-  transition: filter 150ms ease, transform 150ms ease;
+  transition:
+    filter 150ms ease,
+    transform 150ms ease;
 }
 
 .wp-block-button .wp-block-button__link:hover {
@@ -156,7 +152,7 @@ h6.wp-block-heading {
   border-radius: var(--wp--custom--radius--large);
 }
 
-[class*="is-style-surface-"] :is(.wp-block-heading, .wp-block-paragraph) {
+[class*="is-style-surface-"] .wp-block-paragraph {
   color: var(--surface-text);
 }
 
@@ -176,14 +172,7 @@ h6.wp-block-heading {
 
 /* Reusable component primitives. */
 .hero-surface {
-  background-color: var(
-    --surface-background,
-    var(--wp--preset--color--ink)
-  );
-  color: var(--surface-text, var(--wp--preset--color--white));
-}
-
-.hero-surface .hero-heading {
+  background-color: var(--surface-background, var(--wp--preset--color--ink));
   color: var(--surface-text, var(--wp--preset--color--white));
 }
 
@@ -205,10 +194,7 @@ h6.wp-block-heading {
 }
 
 .accordion-surface {
-  background-color: var(
-    --surface-background,
-    var(--wp--preset--color--canvas)
-  );
+  background-color: var(--surface-background, var(--wp--preset--color--canvas));
   color: var(--surface-text, var(--wp--preset--color--ink));
 }
 

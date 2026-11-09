@@ -95,13 +95,23 @@
       "fontFamilies": [
         {
           "slug": "sans",
-          "name": "System Sans",
-          "fontFamily": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+          "name": "Inter",
+          "fontFamily": "\"Inter\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
         },
         {
           "slug": "serif",
-          "name": "Editorial Serif",
-          "fontFamily": "ui-serif, Georgia, Cambria, \"Times New Roman\", serif"
+          "name": "Astloch",
+          "fontFamily": "\"Astloch\", system-ui"
+        },
+        {
+          "slug": "basic",
+          "name": "Basic",
+          "fontFamily": "\"Basic\", sans-serif"
+        },
+        {
+          "slug": "display",
+          "name": "Jim Nightshade",
+          "fontFamily": "\"Jim Nightshade\", cursive"
         }
       ],
       "fontSizes": [
@@ -157,9 +167,6 @@
     },
     "elements": {
       "heading": {
-        "color": {
-          "text": "var(--wp--preset--color--ink)"
-        },
         "typography": {
           "fontWeight": "700",
           "lineHeight": "1.1"

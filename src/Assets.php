@@ -11,11 +11,26 @@ final class Assets
     private const FRONTEND_ENTRY = 'resources/js/app.js';
     private const EDITOR_ENTRY = 'resources/js/editor.js';
 
+    // Google-hosted example. Set to false when using local fontFace files in theme.json.
+    private const USE_GOOGLE_FONTS = true;
+    private const GOOGLE_FONTS_URL = 'https://fonts.googleapis.com/css2?family=Astloch:wght@400;700&family=Basic&family=Inter:wght@400;700&family=Jim+Nightshade&display=swap';
+
     public static function boot(): void
     {
         add_action('wp_enqueue_scripts', [self::class, 'enqueueFrontend']);
         add_action('enqueue_block_assets', [self::class, 'enqueueEditor']);
+        // enqueue_block_assets supplies both the front end and the editor canvas.
+        add_action('enqueue_block_assets', [self::class, 'enqueueFonts'], 5);
         add_filter('timber/twig', [self::class, 'registerTwigFunctions']);
+    }
+
+    public static function enqueueFonts(): void
+    {
+        if (! self::USE_GOOGLE_FONTS) {
+            return;
+        }
+
+        wp_enqueue_style('timber-prototype-google-fonts', self::GOOGLE_FONTS_URL, [], null);
     }
 
     public static function registerTwigFunctions(\Twig\Environment $twig): \Twig\Environment
