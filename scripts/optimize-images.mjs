@@ -29,6 +29,7 @@ async function collectFiles(directory) {
   return files;
 }
 
+export async function optimizeImages() {
 await mkdir(sourceRoot, { recursive: true });
 await mkdir(outputRoot, { recursive: true });
 
@@ -85,3 +86,8 @@ await writeFile(path.join(outputRoot, "manifest.json"), JSON.stringify(manifest,
 console.log(
   `Theme images: ${converted} converted to WebP, ${copied} SVG files copied.`,
 );
+}
+
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  await optimizeImages();
+}
