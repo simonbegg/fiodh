@@ -1,39 +1,22 @@
-<section
-    x-data="{ 
-        scrollPosition: 0,
-        roundedClass: 'rounded-none',
-        updateRounded() {
-            this.scrollPosition = window.scrollY;
-            if (this.scrollPosition > 50) {
-                this.roundedClass = 'rounded-b-[3rem]';
-            } else {
-                this.roundedClass = 'rounded-none';
-            }
-        }
-    }"
-    x-init="updateRounded()"
-    @scroll.window="updateRounded()"
-    class="relative py-24 md:py-32 h-[calc(100vh-4rem)] overflow-hidden"
->
+<section class="relative py-24 md:py-32 h-[calc(100vh-4rem)] overflow-hidden">
     <div
         class="z-0 absolute inset-0 transition-all duration-500"
-        :class="roundedClass"
     >
         <!-- This will use our optimized image from the dist/img directory -->
-        <img src="{{ theme_image('forest_path.png')|e('html_attr') }}" alt="" class="w-full h-full object-cover transition-all duration-500" :class="roundedClass">
+        <img src="{{ theme_image('forest_path.png')|e('html_attr') }}" alt="" class="w-full h-full object-cover transition-all duration-500">
     </div>
-    <div class="z-10 absolute inset-0 bg-linear-to-r from-gray-700/80 via-gray-700/50 transition-all duration-500" :class="roundedClass"></div>
+    <div class="z-10 absolute inset-0 bg-linear-to-r from-gray-700/80 via-gray-700/50 transition-all duration-500"></div>
 
     <div class="z-10 absolute inset-0 place-items-center grid px-4">
         <div class="md:max-w-3xl 2xl:max-w-6xl text-white text-center">
             <h1 class="mb-6 font-display font-medium text-4xl md:text-5xl lg:text-6xl 2xl:text-8xl tracking-wide">
-                Retro Sci-Fi
+                They are always watching
             </h1>
             <p class="mb-8 font-display text-xl md:text-2xl 2xl:text-3xl">
-                Dive into a world where chrome meets neon, where analog dreams collide with digital futures. Discover the unique charm of retrofuturism through our curated collection of art, stories, and design.
+                In the depths of the forest, ancient eyes follow your every step. The trees whisper your name, and shadows move with purpose beyond mortal understanding.
             </p>
             <div class="flex flex-wrap justify-center gap-4">
-                <a href="#content" class="btn btn-primary btn-lg">Explore</a>
+                <a href="#content" class="btn btn-primary btn-lg">Don't go any further</a>
             </div>
         </div>
     </div>
