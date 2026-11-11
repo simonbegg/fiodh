@@ -5,6 +5,10 @@ declare(strict_types=1);
 use Timber\Timber;
 
 $context = Timber::context();
-$context['post'] = Timber::get_post();
+$post = Timber::get_post();
+$context['post'] = $post;
 
-Timber::render('pages/page.twig', $context);
+Timber::render([
+    'pages/page-' . $post->post_name . '.twig',
+    'pages/page.twig',
+], $context);

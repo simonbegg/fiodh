@@ -11,7 +11,10 @@ if (! is_readable(__DIR__ . '/vendor/autoload.php')) {
 require_once __DIR__ . '/vendor/autoload.php';
 
 Timber::init();
-Timber::$dirname = 'resources/views';
+Timber::$dirname = [
+    'resources/views',
+    'resources/views/pages',
+];
 
 Theme::boot();
 
